@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <title>Create New Teacher</title>
+        <style>
+            .error {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <div align="center">
+            <h1> New Teacher</h1>
+            <br />
+            <form action="#" th:action="@{/save}" th:object="${teacher}"
+                  method="post">
+
+                <table border="0" cellpadding="10">
+                    <tr>
+                        <td>First Name:</td>
+                        <td><input type="text" th:field="*{fName}" required="required" minlength="3" maxlength="25" onkeypress="return /[a-z ]/i.test(event.key)"/></td>
+                        <td th:each="err : ${#fields.errors('fName')}" th:text="${err}" class="error">Invalid First Name</td>
+                    </tr>
+                    <tr>
+                        <td>Last Name:</td>
+                        <td><input type="text" th:field="*{lName}" required="required" minlength="3" maxlength="25" onkeypress="return /[a-z]/i.test(event.key)"/></td>
+                        <td th:each="err : ${#fields.errors('lName')}" th:text="${err}" class="error">Invalid Last Name</td>
+                    </tr>
+                    <tr>
+                        <td>Subject:</td>
+                        <td><input type="text" th:field="*{subject}" required="required" minlength="3" maxlength="250" /></td>
+                        <td th:each="err : ${#fields.errors('subject')}" th:text="${err}" class="error">Invalid Subject</td>
+                    </tr>                           
+                    <tr>
+                        <td colspan="2"><button type="submit">Save</button> </td>
+                    </tr>
+                </table>
+            </form>
+            
+        </div>
+    </body>
+</html>
